@@ -3,8 +3,18 @@
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
 	<id>SimpleDeskTeam:OnlineOnlyGroup</id>
 	<name>Online Only Groups in the Group Key</name>
-	<version>1.1</version>
+	<version>2.0</version>
 	<type>modification</type>
+
+	<install for="2.1.*">
+		<require-file name="Subs-MembersOnlineOnly.php" destination="$sourcedir" />
+		<hook function="integrate_mark_read_button_OOG" hook="integrate_mark_read_button" file="$sourcedir/Subs-MembersOnlineOnly.php" />
+	</install>
+	
+	<uninstall for="2.1.*">
+		<remove-file name="$sourcedir/Subs-MembersOnlineOnly.php" />
+		<hook function="integrate_mark_read_button_OOG" hook="integrate_mark_read_button" file="$sourcedir/Subs-MembersOnlineOnly.php" reverse="true" />
+	</uninstall>
 
 	<install for="2.0-2.0.99">
 		<modification type="file">install20.xml</modification>
@@ -12,16 +22,6 @@
 	
 	<uninstall for="2.0-2.0.99">
 		<modification type="file" reverse="true">install20.xml</modification>
-	</uninstall>
-
-	<install for="2.1 Beta 3, 2.1 Beta 4, 2.1 RC1">
-		<require-file name="Subs-MembersOnlineOnly.php" destination="$sourcedir" />
-		<hook function="integrate_mark_read_button_OOG" hook="integrate_mark_read_button" file="$sourcedir/Subs-MembersOnlineOnly.php" />
-	</install>
-	
-	<uninstall for="2.1 Beta 3, 2.1 Beta 4, 2.1 RC1">
-		<remove-file name="$sourcedir/Subs-MembersOnlineOnly.php" />
-		<hook function="integrate_mark_read_button_OOG" hook="integrate_mark_read_button" file="$sourcedir/Subs-MembersOnlineOnly.php" reverse="true" />
 	</uninstall>
 
 </package-info>
